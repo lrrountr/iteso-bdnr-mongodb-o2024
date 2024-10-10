@@ -33,7 +33,13 @@ def find_book(id: str, request: Request):
 
 @router.put("/{id}", response_description="Update a book by id", response_model=Book)
 def update_book(id: str, request: Request, book: BookUpdate = Body(...)):
-    pass
+    # Write your update code here
+
+    # And here we return the updated book, or raise a Not Found expection
+    if (book := request.app.database["books"].find_one({"_id": id})) is not None:
+        return book
+
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Book with ID {id} not found")
 
 @router.delete("/{id}", response_description="Delete a book")
 def delete_book(id: str, request: Request, response: Response):

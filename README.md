@@ -24,7 +24,7 @@ pip install -r requirements.txt
 
 ### To run the API service
 ```
-python3 -m uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
 
 ### To load data
@@ -36,5 +36,5 @@ docker run --name mongodb -d -p 27017:27017 mongo
 Once your API service is running (see step above), run the populate script
 ```
 cd data/
-python3 populate.py
+python populate.py
 ```
